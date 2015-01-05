@@ -21,21 +21,24 @@ angular.module('myApp.command', ['ngRoute'])
         
         $scope.selectedCocktail = {value:$scope.cocktails[0]};
         
-        /* utiliser variables ci dessous pour effectuer enregistrement en bdd */
+        /* Partie de Nicolas STEFAN*/
         $scope.sendCommand = function(){
+		var dateAujourdHui = new Date();
+		var LaDate = dateAujourdHui.getDate() + "/" + (dateAujourdHui.getMonth() + 1) + "/" + dateAujourdHui.getFullYear() + " " + dateAujourdHui.getHours() + ":" + dateAujourdHui.getMinutes();
+		
    
-	var tableauProd =[{name:$scope.selectedCocktail.value.name,quantity:'1',price:'1'}];
-	var command=[{tableNumber:$scope.selectedTable.value.id,createdAt:'05/01/2015',products:tableauProd,status:'to_prepare'}];
-console.log(command);
+		var tableauProd =[{name:$scope.selectedCocktail.value.name,quantity:'1',price:'1'}];
+		var command=[{tableNumber:$scope.selectedTable.value.id,createdAt:LaDate,products:tableauProd,status:'to_prepare'}];
 
-	   var request = $http.put('https://lazywaiter.couchappy.com/orders/', command);
+	    var request = $http.put('https://lazywaiter.couchappy.com/orders/', command);
 		request.success(function(data, status, headers, config) 
 		{
 		alert("Requête effectuée avec succès");
 		});
 		request.error(function(data, status, headers, config)
 		{
-		alert("Erreur" + data + status + headers + config);
+		alert("Erreur");
+		console.log(command);
 		});
         };
 }]);

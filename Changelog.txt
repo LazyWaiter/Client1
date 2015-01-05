@@ -1,0 +1,3 @@
+• Homepage design (Mathis Ghomari)
+• Table and product category selection (Raffiou Diallo)
+• Saving object in database (Nicolas Stefan)

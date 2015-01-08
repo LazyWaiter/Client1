@@ -1,6 +1,6 @@
 'use strict';
 
-/* Raffiou */
+/* Mathis */
 angular.module('myApp.command', ['ngRoute'])
 
 
@@ -17,7 +17,7 @@ angular.module('myApp.command', ['ngRoute'])
             
 		$scope.tabCommand = [];
 
-                $scope.inputQte = 0;
+                $scope.inputQte = 1;
 
                 $scope.addRow = function () {
 

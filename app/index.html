@@ -27,18 +27,32 @@
                     </select>
                 </div>
                 <hr>
-<div>
-                    <select id="categorie" data-ng-model="currentCategorie" data-ng-options="categorie.Name for categorie in categories"></select>
-                    <select id="nom" data-ng-model="currentItem" data-ng-options="item.Name for item in currentCategorie.Items"></select>
-                    <input type="number" value="1" id="inputQte" ng-model="inputQte"/>
-                    <button type="button" id="ajouter" ng-click="addRow()">Ajouter</button>
+                <div class="div-input">
+                    <label> Veuillez choisir votre collation </label>
+                        <div class="div-input-group">
+                            <select id="categorie" data-ng-model="currentCategorie" data-ng-options="categorie.Name for categorie in categories"></select>
+                            <select id="nom" data-ng-model="currentItem" data-ng-options="item.Name for item in currentCategorie.Items"></select>
+                            <input class="input-number" type="number" min="1" value="1" id="inputQte" ng-model="inputQte"/>
+                        </div>
+                        <button type="button" id="ajouter" ng-click="addRow()">Ajouter</button>
                 </div>
                 <table id="panier">
-                    <tr ng-repeat="prod in tabCommand">
-                        <td class="nom">{{prod.name}}</td>
-                        <td class="qte">{{prod.quantity}}</td>
-                        <td class="prix">{{prod.price * prod.quantity}}</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th> Nom </th>
+                            <th> Quantité </th>
+                            <th> Prix (€) </th>
+                            <th> Total (€)</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="prod in tabCommand">
+                            <td class="nom">{{prod.name}}</td>
+                            <td class="qte">{{prod.quantity}}</td>
+                            <td class="prix">{{prod.price}}</td>
+                            <td class="prix">{{prod.price * prod.quantity}}</td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <div>

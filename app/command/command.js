@@ -3,6 +3,7 @@
 /* Raffiou */
 angular.module('myApp.command', ['ngRoute'])
 
+
         .controller('CommandCtrl', ['$scope', '$http', function ($scope, $http) {
 
                 $scope.tables = [
@@ -13,21 +14,100 @@ angular.module('myApp.command', ['ngRoute'])
 
                 $scope.selectedTable = {value: $scope.tables[0]};
 
-                $scope.cocktails = [
-                    {id: "201", name: "Grzaniec"},
-                    {id: "202", name: "Glögi"},
-                    {id: "203", name: "Gimlet"}
+            
+		$scope.tabCommand = [];
+
+                $scope.inputQte = 0;
+
+                $scope.addRow = function () {
+
+                    $scope.tabCommand.push({name: $scope.currentItem.Name, quantity: inputQte.value, price: inputQte.value * $scope.currentItem.Price});
+                    $scope.counter++;
+                }
+
+                var categories = [
+                    {
+                        "Id": "1",
+                        "Name": "Cocktails",
+                        "Items": [
+                            {
+                                "Id": "1",
+                                "Name": "Grzaniec",
+                                "Price": 5
+                            },
+                            {
+                                "Id": "2",
+                                "Name": "Glögi",
+                                "Price": 6
+                            },
+                            {
+                                "Id": "3",
+                                "Name": "Gimlet",
+                                "Price": 7
+                            }
+                        ]
+                    },
+                    {
+                        "Id": "2",
+                        "Name": "Sodas",
+                        "Items": [
+                            {
+                                "Id": "4",
+                                "Name": "Coca",
+                                "Price": 1.5
+                            },
+                            {
+                                "Id": "5",
+                                "Name": "Orangina",
+                                "Price": 0.8
+                            },
+                            {
+                                "Id": "6",
+                                "Name": "Pepsi",
+                                "Price": 1
+                            }
+                        ]
+                    },
+                    {
+                        "Id": "3",
+                        "Name": "Boissons chaudes",
+                        "Items": [
+                            {
+                                "Id": "7",
+                                "Name": "Café",
+                                "Price": 1
+                            },
+                            {
+                                "Id": "8",
+                                "Name": "Chocolat chaud",
+                                "Price": 2
+                            },
+                            {
+                                "Id": "9",
+                                "Name": "Thé citron",
+                                "Price": 1.5
+                            }
+                        ]
+                    }
                 ];
 
-                $scope.selectedCocktail = {value: $scope.cocktails[0]};
+                $scope.categories = categories;
+                $scope.currentCategorie = categories[0];
+                $scope.currentItem = $scope.currentCategorie.Items[0];
 
                 /* Partie de Nicolas STEFAN*/
                 $scope.sendCommand = function () {
                     var dateAujourdHui = new Date();
                     var LaDate = dateAujourdHui.getTime();
-
-
-                    var tableauProd = [{name: $scope.selectedCocktail.value.name, quantity: '1', price: '1'}];
+		var tableauProd = [];
+		
+		var i=0;
+		while(i < $scope.tabCommand.length)
+		{
+			tableauProd.push({name: $scope.tabCommand[i].name,quantity: $scope.tabCommand[i].quantity,price: $scope.tabCommand[i].price*$scope.tabCommand[i].quantity});
+			i++;
+		}
+console.log(tableauProd);
                     
                     
                     var request = $http.post('https://lazywaiter.couchappy.com/orders/', 
@@ -47,4 +127,5 @@ angular.module('myApp.command', ['ngRoute'])
                         alert("Une erreur est survenue la commande n'a pu être enregistrée");
                     });
                 };
+ 
             }]);

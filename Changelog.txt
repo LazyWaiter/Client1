@@ -1,3 +1,5 @@
 - Homepage design (Mathis Ghomari)
 - Table and product category selection (Raffiou Diallo)
 - Saving object in database (Nicolas Stefan)
+- Order multiples products
+- Set quantity for each product in the order

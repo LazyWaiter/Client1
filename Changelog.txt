@@ -1,5 +1,7 @@
 - Homepage design (Mathis Ghomari)
 - Table and product category selection (Raffiou Diallo)
-- Saving object in database (Nicolas Stefan)
-- Order multiples products
-- Set quantity for each product in the order
+- Saving object in database (v1,v2,v3) (Nicolas Stefan)
+- Order multiples products (Mathis Ghomari)
+- Set quantity for each product in the order (Mathis Ghomari)
+- Delete product added in the order (Raffiou Diallo)
+- Get the cost of the order(Raffiou Diallo)

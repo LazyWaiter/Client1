@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../bower_components/html5-boilerplate/css/main.css">
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="app.css">
-        <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="../bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
         <div class="main-content">
@@ -30,13 +30,13 @@
                 <div class="div-input">
                     <label> Veuillez choisir votre collation </label>
                         <div class="div-input-group">
-                            <select id="categorie" data-ng-model="currentCategorie" data-ng-options="categorie.Name for categorie in categories"></select>
-                            <select id="nom" data-ng-model="currentItem" data-ng-options="item.Name for item in currentCategorie.Items"></select>
-                            <input class="input-number" type="number" min="1" value="1" id="inputQte" ng-model="inputQte"/>
+                            <select id="categorie" ng-model="currentCategorie" ng-options="categorie.Name for categorie in categories"></select>
+                            <select id="nom" ng-model="currentItem" ng-options="item.Name for item in currentCategorie.Items"></select>
+                            <input class="input-number" type="number" min="1" value="1" id="inputQte" ng-model="inputQte"/> 
                         </div>
                         <button type="button" id="ajouter" ng-click="addRow()">Ajouter</button>
                 </div>
-                <table id="panier">
+                <table id="panier" ng-show="tabCommand.length >= 1">
                     <thead>
                         <tr>
                             <th> Nom </th>
@@ -51,8 +51,20 @@
                             <td class="qte">{{prod.quantity}}</td>
                             <td class="prix">{{prod.price}}</td>
                             <td class="prix">{{prod.price * prod.quantity}}</td>
+                            <td class="prix">
+                             <button type="button" ng-click="deleteRow(prod.id)">
+                                Supprimer
+                             </button>
+                         </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5"> 
+                                <strong> Total de la commande : {{totalCommand}} </strong>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
 
                 <div>

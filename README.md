@@ -16,7 +16,7 @@ Installation
 
 Clone the repository with :
 ```sh
-$ git clone https://github.com/LazyWaiter/Client.git
+$ git clone https://github.com/LazyWaiter/Client1.git
 ```
 
 Run
